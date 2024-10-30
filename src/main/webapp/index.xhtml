@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"  content=""/>
+    <title>bills</title>
+</h:head>
+<h:body>
+    <h:form id="BillForm">
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+        <p:panel header="Bill" footer="bill details">
+            <p><h:outputText value="#{billController.description}"/></p>
+            <p><h:outputText value="#{billController.amount}"/></p>
+            <p><h:outputText value="#{billController.date}"/></p>
+
+            <div class="field grid">
+                <h:outputLabel for="inputDescription" value="Description of the bill" styleClass="col-12 mb-2 md:col-2 md:mb-0"/>
+                <div class="col-12 md:col-10">
+                    <h:inputText id="inputDescription" value="#{billController.description}"/>
+                </div>
+                </div>
+            <br/>
+            <div class="field grid">
+                <h:outputLabel for="inputAmount" value="Bill Value" styleClass="col-12 mb-2 md:col-2 md:mb-0"/>
+                <div class="col-12 md:col-10">
+                <h:inputText id="inputAmount" value="#{billController.amount}">
+                    <f:convertNumber minFractionDigits = "2" />
+                </h:inputText>
+                </div>
+            </div>
+            <div class="field grid">
+                <h:outputLabel for="inputDate" value="Date of the bill" styleClass="col-12 mb-2 md:col-2 md:mb-0"/>
+                <div class="col-12 md:col-10">
+                    <p:datePicker pattern="dd/MM/yyyy" id="inputDate" value="#{billController.date}">
+                    <f:convertDateTime/>
+                    </p:datePicker>
+                </div>
+            </div>
+            <h:commandButton id="submitButton"  value="send Data"/>
+        </p:panel>
+    </h:form>
+
+
+</h:body>
+</html>
